@@ -82,15 +82,11 @@ webpackJsonp([0],[
 	  api.signOut().then(ui.success).catch(ui.failure);
 	};
 
-	var onClickBox1 = function onClickBox1() {
-	  console.log("Hiii!!");
-	};
 	var addHandlers = function addHandlers() {
 	  $('.sign-up-form').on('submit', onSignUp);
 	  $('.sign-in-form').on('submit', onSignIn);
 	  $('.change-pw-form').on('submit', onUpdatePassword);
 	  $('#sign-out').on('click', onSignOut);
-	  $('#box1').on('click', onClickBox1);
 	};
 
 	module.exports = {
