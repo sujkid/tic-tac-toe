@@ -11,6 +11,7 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
+  // $('#sign-up-modal').modal().hide();
 };
 
 const onSignIn = function (event) {
@@ -30,18 +31,18 @@ const onUpdatePassword = function (event) {
 };
 
 
-// const onSignOut = function (event) {
-//  event.preventDefault();
-//  api.signOut()
-//    .then(ui.success)
-//    .catch(ui.failure);
-// };
+const onSignOut = function (event) {
+  event.preventDefault();
+  api.signOut()
+   .then(ui.success)
+   .catch(ui.failure);
+};
 
 const addHandlers = () => {
   $('.sign-up-form').on('submit', onSignUp);
   $('.sign-in-form').on('submit', onSignIn);
   $('.change-pw-form').on('submit', onUpdatePassword);
-  // $('#sign-out').on('submit', onSignOut);
+  $('#sign-out').on('click', onSignOut);
 };
 
 module.exports = {
