@@ -1,0 +1,26 @@
+
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/';
+
+$background-color: #4e4e4e;
+$font-color: #dfdfdf;
+$white: #fff;
+$black: #000;
+$height: 100px;
+$margin-top: 200px;
+
+.col-md-4 {
+  background-color: $background-color;
+  border: 1px solid $black;
+  height: $height;
+  width: $height;
+}
+
+.row {
+  height: $height;
+}
+
+.container {
+  margin-left: $margin-top * 2.5;
+  margin-top: $margin-top;
+}
