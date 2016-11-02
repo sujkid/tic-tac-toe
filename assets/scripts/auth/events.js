@@ -38,11 +38,16 @@ const onSignOut = function (event) {
    .catch(ui.failure);
 };
 
+const onClickBox1 = function()
+{
+  console.log( "Hiii!!" );
+};
 const addHandlers = () => {
   $('.sign-up-form').on('submit', onSignUp);
   $('.sign-in-form').on('submit', onSignIn);
   $('.change-pw-form').on('submit', onUpdatePassword);
   $('#sign-out').on('click', onSignOut);
+  $('#box1').on('click', onClickBox1);
 };
 
 module.exports = {
