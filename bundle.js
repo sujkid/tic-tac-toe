@@ -32,10 +32,17 @@ webpackJsonp([0],[
 
 	__webpack_require__(3);
 	var authEvents = __webpack_require__(4);
+	// const gameEvents = require('./game.js');
+
 
 	$(function () {
 	  authEvents.addHandlers();
 	});
+
+	// $(() => {
+	//   gameEvents.start();
+	// }
+	// );
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
@@ -55,6 +62,7 @@ webpackJsonp([0],[
 	  var data = getFormFields(this);
 	  event.preventDefault();
 	  api.signUp(data).then(ui.success).catch(ui.failure);
+	  // $('#sign-up-modal').modal().hide();
 	};
 
 	var onSignIn = function onSignIn(event) {
@@ -69,18 +77,16 @@ webpackJsonp([0],[
 	  api.updatePassword(data).then(ui.Success).catch(ui.failure);
 	};
 
-	// const onSignOut = function (event) {
-	//  event.preventDefault();
-	//  api.signOut()
-	//    .then(ui.success)
-	//    .catch(ui.failure);
-	// };
+	var onSignOut = function onSignOut(event) {
+	  event.preventDefault();
+	  api.signOut().then(ui.success).catch(ui.failure);
+	};
 
 	var addHandlers = function addHandlers() {
 	  $('.sign-up-form').on('submit', onSignUp);
 	  $('.sign-in-form').on('submit', onSignIn);
 	  $('.change-pw-form').on('submit', onUpdatePassword);
-	  // $('#sign-out').on('submit', onSignOut);
+	  $('#sign-out').on('click', onSignOut);
 	};
 
 	module.exports = {
@@ -189,20 +195,21 @@ webpackJsonp([0],[
 	  });
 	};
 
-	// const signOut = () =>
-	//   $.ajax({
-	//     url: config.host + '/sign-out/' + store.user.id,
-	//     method: 'DELETE',
-	//     headers: {
-	//       Authorization: 'Token token=' + store.user.token,
-	//     },
-	//   }
-	// );
+	var signOut = function signOut() {
+	  return $.ajax({
+	    url: config.host + '/sign-out/' + store.user.id,
+	    method: 'DELETE',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    }
+	  });
+	};
 
 	module.exports = {
 	  signUp: signUp,
 	  signIn: signIn,
-	  updatePassword: updatePassword
+	  updatePassword: updatePassword,
+	  signOut: signOut
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
