@@ -1,6 +1,8 @@
 'use strict';
 
 const getFormFields = require(`../../../lib/get-form-fields`);
+// const clickOnBox = require('../../scripts/game');
+
 
 const api = require('./api');
 const ui = require('./ui');
@@ -11,7 +13,6 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
-  // $('#sign-up-modal').modal().hide();
 };
 
 const onSignIn = function (event) {
@@ -37,6 +38,7 @@ const onSignOut = function (event) {
    .then(ui.success)
    .catch(ui.failure);
 };
+
 
 const addHandlers = () => {
   $('.sign-up-form').on('submit', onSignUp);
