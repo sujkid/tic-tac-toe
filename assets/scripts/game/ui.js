@@ -7,11 +7,11 @@ const success = (data) => {
   console.log(data);
 };
 
-const signInSuccess = data => {
-
-  store.user = data.user;
-  success(data);
-};
+// const signInSuccess = data => {
+//
+//   store.user = data.user;
+//   success(data);
+// };
 
 const successCreateGame = data => {
    store.game = data.game;

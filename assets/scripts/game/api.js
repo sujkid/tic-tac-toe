@@ -31,23 +31,22 @@ const createGame = function() {
   return $.ajax({
     url: config.host + '/games',
     method: 'POST',
-
     headers: {
       Authorization: 'Token token=' + store.user.token,
     },
   });
 };
 
-
-const updateGameJoin = () =>
-  $.ajax({
-    url: config.host + '/games/' + store.user.id,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + store.user.token,
-    }
-  }
-);
+//
+// const updateGameJoin = () =>
+//   $.ajax({
+//     url: config.host + '/games/' + store.user.id,
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token,
+//     }
+//   }
+// );
 
 const updateStatus = (index, value, gameOver ) =>
   $.ajax({
@@ -75,6 +74,6 @@ module.exports = {
   //showGames,
   createGame,
   //showGame
-  updateGameJoin,
+  // updateGameJoin,
   updateStatus
 };
