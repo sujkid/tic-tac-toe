@@ -8,6 +8,8 @@ $white: #fff;
 $black: #000;
 $height: 100px;
 $margin-top: 200px;
+$font-size: 70px;
+$margin-top-display: 40px;
 
 .col-md-4 {
   background-color: $background-color;
@@ -17,12 +19,17 @@ $margin-top: 200px;
 }
 
 .row {
+  font-size: $font-size;
   height: $height;
-  font-size: 70px;
   text-align: center;
 }
 
 .container {
   margin-left: $margin-top * 2.5;
   margin-top: $margin-top;
+}
+
+.display {
+  margin-top: $margin-top-display;
+  text-align: center;
 }

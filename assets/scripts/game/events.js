@@ -8,6 +8,8 @@ const ui = require('./ui');
 
 
 let lastPlayed = "";
+let gameOver = 0;
+
 
 const onResetGame = function() {
   lastPlayed = "";
@@ -20,15 +22,20 @@ const onResetGame = function() {
   $('#box7').text("");
   $('#box8').text("");
   $('#box9').text("");
+  $('.display').hide( );
+  gameOver = 0;
 };
 
 
 const onClickBox = function () {
+  if(($(this).text() === "X") || ($(this).text() === "O") || gameOver === 1) {
+    return;
+  }
   if(( lastPlayed === "") || (lastPlayed === "O")) {
+
     $(this).text('X');
     lastPlayed = "X";
-  }
-  else {
+  } else {
     $(this).text('O');
     lastPlayed = "O";
   }
@@ -49,9 +56,10 @@ const onClickBox = function () {
       $('#box9').text() === 'X') ||
      ($('#box3').text() === 'X' && $('#box5').text() === 'X' &&
       $('#box7').text() === 'X')) {
-    console.log( "Player X wins" );
-    alert('Player X wins');
-    onResetGame();
+
+    $('.display').show();
+    $('.display').text("Player X wins");
+    gameOver = 1;
   }
 
   if(($('#box1').text() === 'O' && $('#box2').text() === 'O' &&
@@ -70,10 +78,12 @@ const onClickBox = function () {
       $('#box9').text() === 'O') ||
      ($('#box3').text() === 'O' && $('#box5').text() === 'O' &&
       $('#box7').text() === 'O')) {
-    console.log( "Player O wins" );
-    alert('Player O wins');
-    onResetGame();
+    $('.display').show();
+    $('.display').text("Player O wins");
+    gameOver = 1;
   }
+  // api.updateGameJoin();
+  // api.updateGame();
 };
 
 // const onShowGames = function() {
@@ -82,8 +92,8 @@ const onClickBox = function () {
 //     .catch(ui.failure);
 // };
 
-const onPlayGame = function() {
-  api.playGame()
+const onCreateGame = function() {
+  api.createGame()
     .then(ui.success)
     .catch(ui.failure);
 };
@@ -120,8 +130,7 @@ const addHandlers = () => {
   $('#box8').on('click', onClickBox );
   $('#box9').on('click', onClickBox );
   $('.games').on('click', onShowGames);
-  $('#play-game').on('click', onPlayGame);
-  // $('#show-game').on('click', onShowGame);
+  $('#create-game').on('click', onCreateGame);
   $('#reset-game').on('click', onResetGame);
 };
 

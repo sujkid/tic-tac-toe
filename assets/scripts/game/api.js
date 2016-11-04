@@ -17,18 +17,9 @@ const show = function (id) {
     method: 'GET',
   });
 };
-//
-// const showGames = () =>
-//   $.ajax({
-//     url: config.host + '/games',
-//     method: 'GET',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token,
-//     },
-//   }
-// );
 
-const playGame = () =>
+
+const createGame = () =>
   $.ajax({
     url: config.host + '/games',
     method: 'POST',
@@ -38,20 +29,33 @@ const playGame = () =>
   }
 );
 
-// const showGame = () =>
-//   $.ajax({
-//     url: config.host + '/games' + store.user.id,
-//     method: 'GET',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token,
-//     },
-//   }
-// );
+const updateGameJoin = () =>
+  $.ajax({
+    url: config.host + '/games/' + store.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token,
+    }
+  }
+);
+
+const updateGame = () =>
+  $.ajax({
+    url: config.host + '/games/' + store.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token,
+    }
+  }
+);
+
 
 module.exports = {
   index,
   show,
   //showGames,
-  playGame,
+  createGame,
   //showGame
+  updateGameJoin,
+  updateGame
 };
