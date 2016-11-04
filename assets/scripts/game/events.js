@@ -2,13 +2,13 @@
 
 const getFormFields = require(`../../../lib/get-form-fields`);
 
-
 const api = require('./api');
 const ui = require('./ui');
 
 
 let lastPlayed = "";
-let gameOver = 0;
+let gameOver = "false";
+const gameBoard = ["box1","box2","box3","box4","box5","box6","box7","box8","box9"];
 
 
 const onResetGame = function() {
@@ -23,12 +23,22 @@ const onResetGame = function() {
   $('#box8').text("");
   $('#box9').text("");
   $('.display').hide( );
-  gameOver = 0;
+  gameOver = "false";
+};
+
+const onUpdateStatus = function(event) {
+  event.preventDefault();
+  let data = getFormFields(event.target);
+  alert(data);
+  api.updateStatus(data)
+    .then(ui.success)
+    .catch(ui.failure);
 };
 
 
-const onClickBox = function () {
-  if(($(this).text() === "X") || ($(this).text() === "O") || gameOver === 1) {
+const onClickBox = function (event) {
+  event.preventDefault();
+  if(($(this).text() === "X") || ($(this).text() === "O") || gameOver === "true") {
     return;
   }
   if(( lastPlayed === "") || (lastPlayed === "O")) {
@@ -56,10 +66,9 @@ const onClickBox = function () {
       $('#box9').text() === 'X') ||
      ($('#box3').text() === 'X' && $('#box5').text() === 'X' &&
       $('#box7').text() === 'X')) {
-
     $('.display').show();
     $('.display').text("Player X wins");
-    gameOver = 1;
+    gameOver = "true";
   }
 
   if(($('#box1').text() === 'O' && $('#box2').text() === 'O' &&
@@ -80,11 +89,29 @@ const onClickBox = function () {
       $('#box7').text() === 'O')) {
     $('.display').show();
     $('.display').text("Player O wins");
-    gameOver = 1;
+    gameOver = "true";
   }
-  // api.updateGameJoin();
-  // api.updateGame();
+  if($('#box1').text() !== "" && $('#box2').text() !== "" &&
+     $('#box3').text() !== "" && $('#box4').text() !== "" &&
+     $('#box5').text() !== "" && $('#box6').text() !== "" &&
+     $('#box7').text() !== "" && $('#box8').text() !== "" &&
+     $('#box9').text() !== "" && gameOver === "false" ) {
+       $('.display').show();
+         gameOver = "true";
+       $('.display').text("It's a draw! Play again!");
+  }
+// //debugger;
+let n = $(this).attr('id');
+//   alert(gameBoard.indexOf(n));
+  // onUpdateJoin();
+
+ //document.getElementById('game[over]').value=gameOver;
+ //document.getElementById('game[cell][index]').value=gameBoard.indexOf(n);
+ //document.getElementById('game[cell][value]').value=$(this).text();
+ api.updateStatus( gameBoard.indexOf(n), $(this).text(), gameOver );
 };
+
+
 
 // const onShowGames = function() {
 //   api.showGames()
@@ -92,9 +119,12 @@ const onClickBox = function () {
 //     .catch(ui.failure);
 // };
 
-const onCreateGame = function() {
+const onCreateGame = function(event) {
+
+  onResetGame();
+  event.preventDefault();
   api.createGame()
-    .then(ui.success)
+    .then(ui.successCreateGame)
     .catch(ui.failure);
 };
 
@@ -135,5 +165,6 @@ const addHandlers = () => {
 };
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onUpdateStatus
 };

@@ -8,6 +8,9 @@ const index = function () {
   return $.ajax({
     url: config.host + '/games',
     method: 'GET',
+    headers : {
+      Authorization: 'Token token=' + store.user.token,
+    }
   });
 };
 
@@ -15,19 +18,26 @@ const show = function (id) {
   return $.ajax({
     url: config.host + '/games/' + id,
     method: 'GET',
+    headers : {
+      Authorization: 'Token token=' + store.user.token,
+    }
   });
 };
 
 
-const createGame = () =>
-  $.ajax({
+const createGame = function() {
+// console.log('inside create');
+
+  return $.ajax({
     url: config.host + '/games',
     method: 'POST',
+
     headers: {
       Authorization: 'Token token=' + store.user.token,
     },
-  }
-);
+  });
+};
+
 
 const updateGameJoin = () =>
   $.ajax({
@@ -39,13 +49,22 @@ const updateGameJoin = () =>
   }
 );
 
-const updateGame = () =>
+const updateStatus = (index, value, gameOver ) =>
   $.ajax({
-    url: config.host + '/games/' + store.user.id,
+    url: config.host + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token,
-    }
+    },
+    data: {
+        "game": {
+          "cell": {
+            "index": index,
+            "value": value
+          },
+          "over": gameOver,
+        }
+      }
   }
 );
 
@@ -57,5 +76,5 @@ module.exports = {
   createGame,
   //showGame
   updateGameJoin,
-  updateGame
+  updateStatus
 };
