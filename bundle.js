@@ -49,8 +49,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var getFormFields = __webpack_require__(5);
-	// const clickOnBox = require('../../scripts/game');
-
 
 	var api = __webpack_require__(6);
 	var ui = __webpack_require__(9);
@@ -59,9 +57,11 @@ webpackJsonp([0],[
 	  var data = getFormFields(this);
 	  event.preventDefault();
 	  api.signUp(data).then(ui.success).catch(ui.failure);
+	  // $('#sign-up-modal').modal().hide();
 	};
 
 	var onSignIn = function onSignIn(event) {
+
 	  var data = getFormFields(this);
 	  event.preventDefault();
 	  api.signIn(data).then(ui.signInSuccess).catch(ui.failure);
@@ -274,7 +274,8 @@ webpackJsonp([0],[
 	var ui = __webpack_require__(12);
 
 	var lastPlayed = "";
-	var gameOver = 0;
+	var gameOver = "false";
+	var gameBoard = ["box1", "box2", "box3", "box4", "box5", "box6", "box7", "box8", "box9"];
 
 	var onResetGame = function onResetGame() {
 	  lastPlayed = "";
@@ -288,11 +289,19 @@ webpackJsonp([0],[
 	  $('#box8').text("");
 	  $('#box9').text("");
 	  $('.display').hide();
-	  gameOver = 0;
+	  gameOver = "false";
 	};
 
-	var onClickBox = function onClickBox() {
-	  if ($(this).text() === "X" || $(this).text() === "O" || gameOver === 1) {
+	var onUpdateStatus = function onUpdateStatus(event) {
+	  event.preventDefault();
+	  var data = getFormFields(event.target);
+	  alert(data);
+	  api.updateStatus(data).then(ui.success).catch(ui.failure);
+	};
+
+	var onClickBox = function onClickBox(event) {
+	  event.preventDefault();
+	  if ($(this).text() === "X" || $(this).text() === "O" || gameOver === "true") {
 	    return;
 	  }
 	  if (lastPlayed === "" || lastPlayed === "O") {
@@ -305,19 +314,30 @@ webpackJsonp([0],[
 	  }
 
 	  if ($('#box1').text() === 'X' && $('#box2').text() === 'X' && $('#box3').text() === 'X' || $('#box4').text() === 'X' && $('#box5').text() === 'X' && $('#box6').text() === 'X' || $('#box7').text() === 'X' && $('#box8').text() === 'X' && $('#box9').text() === 'X' || $('#box1').text() === 'X' && $('#box4').text() === 'X' && $('#box7').text() === 'X' || $('#box2').text() === 'X' && $('#box5').text() === 'X' && $('#box8').text() === 'X' || $('#box3').text() === 'X' && $('#box6').text() === 'X' && $('#box9').text() === 'X' || $('#box1').text() === 'X' && $('#box5').text() === 'X' && $('#box9').text() === 'X' || $('#box3').text() === 'X' && $('#box5').text() === 'X' && $('#box7').text() === 'X') {
-
 	    $('.display').show();
 	    $('.display').text("Player X wins");
-	    gameOver = 1;
+	    gameOver = "true";
 	  }
 
 	  if ($('#box1').text() === 'O' && $('#box2').text() === 'O' && $('#box3').text() === 'O' || $('#box4').text() === 'O' && $('#box5').text() === 'O' && $('#box6').text() === 'O' || $('#box7').text() === 'O' && $('#box8').text() === 'O' && $('#box9').text() === 'O' || $('#box1').text() === 'O' && $('#box4').text() === 'O' && $('#box7').text() === 'O' || $('#box2').text() === 'O' && $('#box5').text() === 'O' && $('#box8').text() === 'O' || $('#box3').text() === 'O' && $('#box6').text() === 'O' && $('#box9').text() === 'O' || $('#box1').text() === 'O' && $('#box5').text() === 'O' && $('#box9').text() === 'O' || $('#box3').text() === 'O' && $('#box5').text() === 'O' && $('#box7').text() === 'O') {
 	    $('.display').show();
 	    $('.display').text("Player O wins");
-	    gameOver = 1;
+	    gameOver = "true";
 	  }
-	  // api.updateGameJoin();
-	  // api.updateGame();
+	  if ($('#box1').text() !== "" && $('#box2').text() !== "" && $('#box3').text() !== "" && $('#box4').text() !== "" && $('#box5').text() !== "" && $('#box6').text() !== "" && $('#box7').text() !== "" && $('#box8').text() !== "" && $('#box9').text() !== "" && gameOver === "false") {
+	    $('.display').show();
+	    gameOver = "true";
+	    $('.display').text("It's a draw! Play again!");
+	  }
+	  // //debugger;
+	  var n = $(this).attr('id');
+	  //   alert(gameBoard.indexOf(n));
+	  // onUpdateJoin();
+
+	  //document.getElementById('game[over]').value=gameOver;
+	  //document.getElementById('game[cell][index]').value=gameBoard.indexOf(n);
+	  //document.getElementById('game[cell][value]').value=$(this).text();
+	  api.updateStatus(gameBoard.indexOf(n), $(this).text(), gameOver);
 	};
 
 	// const onShowGames = function() {
@@ -326,8 +346,11 @@ webpackJsonp([0],[
 	//     .catch(ui.failure);
 	// };
 
-	var onCreateGame = function onCreateGame() {
-	  api.createGame().then(ui.success).catch(ui.failure);
+	var onCreateGame = function onCreateGame(event) {
+
+	  onResetGame();
+	  event.preventDefault();
+	  api.createGame().then(ui.successCreateGame).catch(ui.failure);
 	};
 
 	// const onShowGame = function() {
@@ -363,7 +386,8 @@ webpackJsonp([0],[
 	};
 
 	module.exports = {
-	  addHandlers: addHandlers
+	  addHandlers: addHandlers,
+	  onUpdateStatus: onUpdateStatus
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -379,18 +403,26 @@ webpackJsonp([0],[
 	var index = function index() {
 	  return $.ajax({
 	    url: config.host + '/games',
-	    method: 'GET'
+	    method: 'GET',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    }
 	  });
 	};
 
 	var show = function show(id) {
 	  return $.ajax({
 	    url: config.host + '/games/' + id,
-	    method: 'GET'
+	    method: 'GET',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    }
 	  });
 	};
 
 	var createGame = function createGame() {
+	  // console.log('inside create');
+
 	  return $.ajax({
 	    url: config.host + '/games',
 	    method: 'POST',
@@ -400,22 +432,32 @@ webpackJsonp([0],[
 	  });
 	};
 
-	var updateGameJoin = function updateGameJoin() {
-	  return $.ajax({
-	    url: config.host + '/games/' + store.user.id,
-	    method: 'PATCH',
-	    headers: {
-	      Authorization: 'Token token=' + store.user.token
-	    }
-	  });
-	};
+	//
+	// const updateGameJoin = () =>
+	//   $.ajax({
+	//     url: config.host + '/games/' + store.user.id,
+	//     method: 'PATCH',
+	//     headers: {
+	//       Authorization: 'Token token=' + store.user.token,
+	//     }
+	//   }
+	// );
 
-	var updateGame = function updateGame() {
+	var updateStatus = function updateStatus(index, value, gameOver) {
 	  return $.ajax({
-	    url: config.host + '/games/' + store.user.id,
+	    url: config.host + '/games/' + store.game.id,
 	    method: 'PATCH',
 	    headers: {
 	      Authorization: 'Token token=' + store.user.token
+	    },
+	    data: {
+	      "game": {
+	        "cell": {
+	          "index": index,
+	          "value": value
+	        },
+	        "over": gameOver
+	      }
 	    }
 	  });
 	};
@@ -426,8 +468,8 @@ webpackJsonp([0],[
 	  //showGames,
 	  createGame: createGame,
 	  //showGame
-	  updateGameJoin: updateGameJoin,
-	  updateGame: updateGame
+	  // updateGameJoin,
+	  updateStatus: updateStatus
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -444,12 +486,19 @@ webpackJsonp([0],[
 	  console.log(data);
 	};
 
-	var signInSuccess = function signInSuccess(data) {
-	  store.user = data.user;
+	// const signInSuccess = data => {
+	//
+	//   store.user = data.user;
+	//   success(data);
+	// };
+
+	var successCreateGame = function successCreateGame(data) {
+	  store.game = data.game;
 	  success(data);
 	};
 
 	var failure = function failure(error) {
+	  console.log('failed');
 	  $('#messages').text('fail');
 	  console.error(error);
 	};
@@ -457,7 +506,7 @@ webpackJsonp([0],[
 	module.exports = {
 	  failure: failure,
 	  success: success,
-	  signInSuccess: signInSuccess
+	  successCreateGame: successCreateGame
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
