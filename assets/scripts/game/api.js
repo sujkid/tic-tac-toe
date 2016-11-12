@@ -1,16 +1,15 @@
 'use strict';
 
 const config = require('../config');
-const store = require( '../store' );
-
+const store = require('../store');
 
 const index = function () {
   return $.ajax({
     url: config.host + '/games',
     method: 'GET',
-    headers : {
+    headers: {
       Authorization: 'Token token=' + store.user.token,
-    }
+    },
   });
 };
 
@@ -18,15 +17,15 @@ const show = function (id) {
   return $.ajax({
     url: config.host + '/games/' + id,
     method: 'GET',
-    headers : {
+    headers: {
       Authorization: 'Token token=' + store.user.token,
-    }
+    },
   });
 };
 
+const createGame = function () {
 
-const createGame = function() {
-// console.log('inside create');
+  // console.log('inside create');
 
   return $.ajax({
     url: config.host + '/games',
@@ -48,7 +47,7 @@ const createGame = function() {
 //   }
 // );
 
-const updateStatus = (index, value, gameOver ) =>
+const updateStatus = (index, value, gameOver) =>
   $.ajax({
     url: config.host + '/games/' + store.game.id,
     method: 'PATCH',
@@ -56,24 +55,20 @@ const updateStatus = (index, value, gameOver ) =>
       Authorization: 'Token token=' + store.user.token,
     },
     data: {
-        "game": {
-          "cell": {
-            "index": index,
-            "value": value
+        game: {
+          cell: {
+            index: index,
+            value: value,
           },
-          "over": gameOver,
-        }
-      }
+          over: gameOver,
+        },
+      },
   }
 );
-
 
 module.exports = {
   index,
   show,
-  //showGames,
   createGame,
-  //showGame
-  // updateGameJoin,
-  updateStatus
+  updateStatus,
 };

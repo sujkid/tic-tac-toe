@@ -60,51 +60,51 @@
     </nav>
     <!-- NAVBAR ENDS HERE -->
 
-    <button type="button" class="btn btn-primary btn-lg" id="create-game">
-      Create Game
-    </button>
-    <hr>
-    <form class='games'>
-      <div class="form-group">
-        <input type="text" name="game[id]" id="game-id"
-               placeholder="Game ID Here">
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg">Show Games</button>
-    </form>
+    <div class="gamescreen">
+      <button type="button" class="btn btn-primary btn-lg" id="create-game">
+        Create Game
+      </button>
+      <hr>
+      <form class='games'>
+        <div class="form-group">
+          <input type="text" name="game[id]" id="game-id"
+                 placeholder="Game ID Here">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Show Games</button>
+      </form>
 
 
-    <!--<h1>TIC TAC TOE</h1> -->
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6 col-md-4" id="box1"></div>
-        <div class="col-xs-6 col-md-4" id="box2"></div>
-        <div class="col-xs-6 col-md-4" id="box3"></div>
+      <!--<h1>TIC TAC TOE</h1> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-md-4" id="box1"></div>
+          <div class="col-xs-6 col-md-4" id="box2"></div>
+          <div class="col-xs-6 col-md-4" id="box3"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-md-4" id="box4"></div>
+          <div class="col-xs-6 col-md-4" id="box5"></div>
+          <div class="col-xs-6 col-md-4" id="box6"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-md-4" id="box7"></div>
+          <div class="col-xs-6 col-md-4" id="box8"></div>
+          <div class="col-xs-6 col-md-4" id="box9"></div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-xs-6 col-md-4" id="box4"></div>
-        <div class="col-xs-6 col-md-4" id="box5"></div>
-        <div class="col-xs-6 col-md-4" id="box6"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 col-md-4" id="box7"></div>
-        <div class="col-xs-6 col-md-4" id="box8"></div>
-        <div class="col-xs-6 col-md-4" id="box9"></div>
-      </div>
+
+
+      <!--<form class="update">
+        <input name="game[cell][index]" id="game[cell][index]" type="text" value="0">
+        <input name="game[cell][value]" id="game[cell][value]" type="text" value="x">
+        <input name="game[over]" id="game[over]" type="text" value="false">
+      </form>-->
+
+      <hr>
+      <button type="button" class="btn btn-primary btn-lg" id="reset-game">
+        Reset Game
+      </button>
     </div>
-
-    <div class="display">
-    </div>
-
-    <!--<form class="update">
-      <input name="game[cell][index]" id="game[cell][index]" type="text" value="0">
-      <input name="game[cell][value]" id="game[cell][value]" type="text" value="x">
-      <input name="game[over]" id="game[over]" type="text" value="false">
-    </form>-->
-
-    <hr>
-    <button type="button" class="btn btn-primary btn-lg" id="reset-game">
-      Reset Game
-    </button>
 
     <!-- Sign Up Modal -->
     <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog"

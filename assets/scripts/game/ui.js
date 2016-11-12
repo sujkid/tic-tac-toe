@@ -1,7 +1,6 @@
 'use strict';
 
-const store = require( '../store' );
-
+const store = require('../store');
 const success = (data) => {
   $('#messages').text('success');
   console.log(data);
@@ -12,12 +11,10 @@ const success = (data) => {
 //   store.user = data.user;
 //   success(data);
 // };
-
 const successCreateGame = data => {
-   store.game = data.game;
+  store.game = data.game;
   success(data);
 };
-
 
 const failure = (error) => {
   console.log('failed');
@@ -28,5 +25,5 @@ const failure = (error) => {
 module.exports = {
   failure,
   success,
-  successCreateGame
+  successCreateGame,
 };

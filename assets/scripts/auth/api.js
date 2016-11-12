@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('../config');
-const store = require( '../store' );
+const store = require('../store');
 
 const signUp = (data) =>
   $.ajax({
@@ -38,7 +38,6 @@ const signOut = () =>
     },
   }
 );
-
 
 module.exports = {
   signUp,

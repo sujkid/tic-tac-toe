@@ -11,11 +11,11 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
+
   // $('#sign-up-modal').modal().hide();
 };
 
 const onSignIn = function (event) {
-
   let data = getFormFields(this);
   event.preventDefault();
   api.signIn(data)
@@ -28,9 +28,8 @@ const onUpdatePassword = function (event) {
   event.preventDefault();
   api.updatePassword(data)
     .then(ui.Success)
-   .catch(ui.failure);
+    .catch(ui.failure);
 };
-
 
 const onSignOut = function (event) {
   event.preventDefault();

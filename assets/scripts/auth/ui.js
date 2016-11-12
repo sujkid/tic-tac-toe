@@ -1,6 +1,6 @@
 'use strict';
 
-const store = require( '../store' );
+const store = require('../store');
 
 const success = (data) => {
   $('#messages').text('success');
@@ -17,9 +17,8 @@ const failure = (error) => {
   console.error(error);
 };
 
-
 module.exports = {
   failure,
   success,
-  signInSuccess
+  signInSuccess,
 };
