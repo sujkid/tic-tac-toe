@@ -26,10 +26,9 @@ $margin-top-display: 40px;
 
 .container {
   margin-left: $margin-top * 2.5;
-  // margin-top: $margin-top;
 }
 
-// .display {
-//   margin-top: $margin-top-display;
-//   text-align: center;
-// }
+.display {
+  margin-top: $margin-top-display;
+  text-align: center;
+}

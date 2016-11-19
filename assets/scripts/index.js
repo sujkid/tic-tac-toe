@@ -11,4 +11,6 @@ const gameEvents = require('./game/events.js');
 $(() => {
   authEvents.addHandlers();
   gameEvents.addHandlers();
+  $('#change-pw').hide();
+  $('#sign-out').hide();
 });

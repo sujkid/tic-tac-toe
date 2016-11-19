@@ -1,9 +1,9 @@
 'use strict';
 
 const store = require('../store');
-const success = (data) => {
-  $('#messages').text('success');
-  console.log(data);
+const success = (/*data*/) => {
+  // $('.game_stats').text('You have played ' + data.games.length + ' games');
+  // console.log(data);
 };
 
 // const signInSuccess = data => {
@@ -11,19 +11,31 @@ const success = (data) => {
 //   store.user = data.user;
 //   success(data);
 // };
+
 const successCreateGame = data => {
   store.game = data.game;
-  success(data);
+
+  // success(data);
 };
 
-const failure = (error) => {
-  console.log('failed');
+const successShowGame = (data) => {
+  $('.game_stats').show();
+  $('.game_stats').text('You have played ' + data.games.length + ' games');
+
+  // console.log(data);
+};
+
+const failure = (/*error*/) => {
+
+  // console.log('failed');
   $('#messages').text('fail');
-  console.error(error);
+
+  // console.error(error);
 };
 
 module.exports = {
   failure,
   success,
   successCreateGame,
+  successShowGame,
 };

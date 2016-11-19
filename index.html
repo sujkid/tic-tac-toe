@@ -43,7 +43,8 @@
                 </button></a></li>
                 <li><a>      <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-lg"
-                        data-toggle="modal" data-target="#change-pw-modal">
+                        data-toggle="modal" data-target="#change-pw-modal"
+                        id="change-pw">
                   Change Password
                 </button></a></li>
                 <li role="separator" class="divider"></li>
@@ -60,18 +61,19 @@
     </nav>
     <!-- NAVBAR ENDS HERE -->
 
-    <div class="gamescreen">
+    <div id='auth-msg'>
+    </div>
+
       <button type="button" class="btn btn-primary btn-lg" id="create-game">
-        Create Game
+        Create New Game
       </button>
       <hr>
+      <div class="gamescreen">
       <form class='games'>
-        <div class="form-group">
-          <input type="text" name="game[id]" id="game-id"
-                 placeholder="Game ID Here">
-        </div>
         <button type="submit" class="btn btn-primary btn-lg">Show Games</button>
       </form>
+      <div class="game_stats">
+      </div>
 
 
       <!--<h1>TIC TAC TOE</h1> -->
@@ -93,6 +95,9 @@
         </div>
       </div>
 
+      <div class="display">
+      </div>
+
 
       <!--<form class="update">
         <input name="game[cell][index]" id="game[cell][index]" type="text" value="0">
@@ -100,10 +105,10 @@
         <input name="game[over]" id="game[over]" type="text" value="false">
       </form>-->
 
-      <hr>
-      <button type="button" class="btn btn-primary btn-lg" id="reset-game">
+      <!-- <hr> -->
+      <!-- <button type="button" class="btn btn-primary btn-lg" id="reset-game">
         Reset Game
-      </button>
+      </button> -->
     </div>
 
     <!-- Sign Up Modal -->

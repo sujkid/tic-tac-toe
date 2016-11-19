@@ -1,7 +1,7 @@
 'use strict';
 
-const getFormFields = require(`../../../lib/get-form-fields`);
-
+// const getFormFields = require(`../../../lib/get-form-fields`);
+const store = require('../store');
 const api = require('./api');
 const ui = require('./ui');
 
@@ -22,22 +22,25 @@ const onResetGame = function () {
   $('#box7').text('');
   $('#box8').text('');
   $('#box9').text('');
+  $('.game_stats').hide();
   $('.display').hide();
   gameOver = 'false';
 };
 
-const onUpdateStatus = function (event) {
-  event.preventDefault();
-  let data = getFormFields(event.target);
-  alert(data);
-  api.updateStatus(data)
-    .then(ui.success)
-    .catch(ui.failure);
-};
+// const onUpdateStatus = function (event) {
+//   event.preventDefault();
+//   let data = getFormFields(event.target);
+//   alert(data);
+//   api.updateStatus(data)
+//     .then(ui.success)
+//     .catch(ui.failure);
+// };
 
 const onClickBox = function (event) {
   event.preventDefault();
-  if (($(this).text() === 'X') || ($(this).text() === 'O') || gameOver === 'true') {
+  if (($(this).text() === 'X') || ($(this).text() === 'O') ||
+       gameOver === 'true' || typeof store.game === 'undefined' ||
+       store.user === null) {
     return;
   }
 
@@ -114,33 +117,40 @@ const onClickBox = function (event) {
   api.updateStatus(gameBoard.indexOf(n), $(this).text(), gameOver);
 };
 
-// const onShowGames = function() {
-//   api.showGames()
-//     .then(ui.success)
-//     .catch(ui.failure);
-// };
-
 const onCreateGame = function (event) {
   onResetGame();
+  $('.game_stats').hide();
   event.preventDefault();
+  if (typeof store.user === 'undefined' || store.user === null) {
+    return;
+  }
+
   api.createGame()
     .then(ui.successCreateGame)
     .catch(ui.failure);
+  $('.gamescreen').show();
 };
 
 const onShowGames = function (event) {
   event.preventDefault();
-  let gameId = $('#game-id').val();
-
-  if (gameId.length === 0) {
-    api.index()
-      .then(ui.success)
-      .catch(ui.failure);
-  } else {
-    api.show(gameId)
-      .then(ui.success)
-      .catch(ui.failure);
+  if (typeof store.user === 'undefined' || store.user === null) {
+    return;
   }
+
+  // let gameId = $('#game-id').val();
+
+  // if (gameId.length === 0) {
+  api.index()
+   .then(ui.successShowGame)
+   .catch(ui.failure);
+
+  // $('.game_stats').text('You have played ' + store.games.length + ' games');
+  // } else {
+  //   api.show(gameId)
+  //     .then(ui.success)
+  //     .catch(ui.failure);
+  // $('.game_stats').text('You have played ' + store.games.length + ' games');
+  // }
 };
 
 const addHandlers = () => {
@@ -155,10 +165,11 @@ const addHandlers = () => {
   $('#box9').on('click', onClickBox);
   $('.games').on('click', onShowGames);
   $('#create-game').on('click', onCreateGame);
-  $('#reset-game').on('click', onResetGame);
+
+  // $('#reset-game').on('click', onResetGame);
 };
 
 module.exports = {
   addHandlers,
-  onUpdateStatus,
+  onResetGame,
 };

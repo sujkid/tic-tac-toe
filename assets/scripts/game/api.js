@@ -13,15 +13,15 @@ const index = function () {
   });
 };
 
-const show = function (id) {
-  return $.ajax({
-    url: config.host + '/games/' + id,
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token,
-    },
-  });
-};
+// const show = function (id) {
+//   return $.ajax({
+//     url: config.host + '/games/' + id,
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token,
+//     },
+//   });
+// };
 
 const createGame = function () {
 
@@ -68,7 +68,8 @@ const updateStatus = (index, value, gameOver) =>
 
 module.exports = {
   index,
-  show,
+
+  // show,
   createGame,
   updateStatus,
 };
