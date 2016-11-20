@@ -163,7 +163,7 @@ const addHandlers = () => {
   $('#box7').on('click', onClickBox);
   $('#box8').on('click', onClickBox);
   $('#box9').on('click', onClickBox);
-  $('.games').on('click', onShowGames);
+  $('#games').on('click', onShowGames);
   $('#create-game').on('click', onCreateGame);
 
   // $('#reset-game').on('click', onResetGame);

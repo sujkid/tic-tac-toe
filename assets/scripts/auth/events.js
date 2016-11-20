@@ -4,7 +4,6 @@ const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
 const gameEvent = require('../game/events');
-const store = require('../store');
 
 const onSignUp = function (event) {
   let data = getFormFields(this);
@@ -20,15 +19,10 @@ const onSignIn = function (event) {
   let data = getFormFields(this);
 
   // debugger;
-  if (store.user === null || typeof store.user === 'undefined') {
-    event.preventDefault();
-    api.signIn(data)
-      .then(ui.signInSuccess)
-      .catch(ui.failure);
-  } else {
-    $('#auth-msg').show();
-    $('#auth-msg').text('Please log out to sign in again');
-  }
+  event.preventDefault();
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.failure);
 };
 
 const onUpdatePassword = function (event) {

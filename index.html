@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
     <title>Tic Tac Toe</title>
-    <script src="dependencies.js" type="text/javascript" charset="utf-8" defer></script>
-    <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
+    <script src="dependencies.js" type="text/javascript" charset="utf-8" defer>
+    </script>
+    <script src="bundle.js" type="text/javascript" charset="utf-8" defer>
+    </script>
   </head>
 
   <body>
@@ -19,7 +24,7 @@
                   aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="navbar-brand" href="#">TIC-TAC-TOE</a>
+          <h3>TIC-TAC-TOE</h3>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,24 +37,26 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a>      <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg"
-                        data-toggle="modal" data-target="#sign-up-modal">
+                <button type="button" class="btn btn-default btn-lg"
+                        data-toggle="modal" data-target="#sign-up-modal"
+                        id="sign-up">
                   Sign Up
                 </button></a></li>
                 <li><a>
-                <button type="button" class="btn btn-primary btn-lg"
-                        data-toggle="modal" data-target="#sign-in-modal">
+                <button type="button" class="btn btn-default btn-lg"
+                        data-toggle="modal" data-target="#sign-in-modal"
+                        id="sign-in">
                   Sign In
                 </button></a></li>
                 <li><a>      <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg"
+                <button type="button" class="btn btn-default btn-lg"
                         data-toggle="modal" data-target="#change-pw-modal"
                         id="change-pw">
                   Change Password
                 </button></a></li>
                 <li role="separator" class="divider"></li>
                 <li><a>      <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg"
+                <button type="button" class="btn btn-default btn-lg"
                         id="sign-out">
                   Sign Out
                 </button></a></li>
@@ -64,14 +71,8 @@
     <div id='auth-msg'>
     </div>
 
-      <button type="button" class="btn btn-primary btn-lg" id="create-game">
-        Create New Game
-      </button>
-      <hr>
       <div class="gamescreen">
-      <form class='games'>
-        <button type="submit" class="btn btn-primary btn-lg">Show Games</button>
-      </form>
+
       <div class="game_stats">
       </div>
 
@@ -97,7 +98,20 @@
 
       <div class="display">
       </div>
+      <hr>
 
+      <div class='btns'>
+      <form class='games'>
+        <button type="button" class="btn btn-default btn-lg" id="create-game">
+          Create New Game
+        </button>
+      </form>
+      <form class='games'>
+        <button type="submit" class="btn btn-default btn-lg" id="games">
+          Game Stats
+        </button>
+      </form>
+    </div>
 
       <!--<form class="update">
         <input name="game[cell][index]" id="game[cell][index]" type="text" value="0">
@@ -144,7 +158,7 @@
 
               <button type="submit" class="btn btn-default">Submit</button>
               <button type="button" class="btn btn-default"
-                      data-dismiss="modal">Close</button>
+                      data-dismiss="modal">Cancel</button>
             </form>
           </div>
         </div>
@@ -177,7 +191,7 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
               <button type="button" class="btn btn-default"
-                      data-dismiss="modal">Close</button>
+                      data-dismiss="modal">Cancel</button>
             </form>
           </div>
         </div>
@@ -210,7 +224,7 @@
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
               <button type="button" class="btn btn-default"
-                      data-dismiss="modal">Close</button>
+                      data-dismiss="modal">Cancel</button>
             </form>
           </div>
         </div>
