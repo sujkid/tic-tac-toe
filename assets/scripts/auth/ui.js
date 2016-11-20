@@ -11,6 +11,8 @@ const signInSuccess = data => {
   success(data);
   $('#change-pw').show();
   $('#sign-out').show();
+  $('#sign-in').hide();
+  $('#sign-up').hide();
 };
 
 const signOutSuccess = (data) => {
@@ -19,6 +21,8 @@ const signOutSuccess = (data) => {
   console.log(data);
   $('#change-pw').hide();
   $('#sign-out').hide();
+  $('#sign-in').show();
+  $('#sign-up').show();
 };
 
 const failure = (/*error*/) => {

@@ -2,33 +2,66 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/';
 
-$background-color: #4e4e4e;
-$font-color: #dfdfdf;
+$background-color: #ffc5a7;
+$background-color-body: #d3d3d3;
+$font-color: #fff;
 $white: #fff;
 $black: #000;
-$height: 100px;
+$height: 130px;
 $margin-top: 200px;
-$font-size: 70px;
+$font-size-row: 70px;
 $margin-top-display: 40px;
+$border-radius-box: 25px;
+$header-color: #fff;
+$font-size: 30px;
+
+h3 {
+  color: $header-color;
+}
+
+body {
+  // background: url("https://static.pexels.com/photos/57858/pexels-photo-57858.jpeg");
+  background-color: $background-color-body;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: $font-size;
+}
 
 .col-md-4 {
   background-color: $background-color;
-  border: 1px solid $black;
+  border: 1px solid $white;
+  border-radius: $border-radius-box;
+  color: $font-color;
   height: $height;
   width: $height;
 }
 
 .row {
-  font-size: $font-size;
+  font-size: $font-size-row;
   height: $height;
+  line-height: $height;
   text-align: center;
 }
 
 .container {
-  margin-left: $margin-top * 2.5;
+  display: block;
+  margin: auto;
+  width: ($height * 3) + 3;
 }
 
 .display {
   margin-top: $margin-top-display;
   text-align: center;
+}
+
+.navbar-brand {
+  text-align: center;
+}
+
+.btns {
+  text-align: center;
+  width: 100%;
+}
+
+.games {
+  display: inline-block;
 }
