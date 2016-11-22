@@ -22,7 +22,7 @@ const onResetGame = function () {
   $('#box7').text('');
   $('#box8').text('');
   $('#box9').text('');
-  $('.game_stats').hide();
+  $('.game-stats').hide();
   $('.display').hide();
   gameOver = 'false';
 };
@@ -38,9 +38,9 @@ const onResetGame = function () {
 
 const onClickBox = function (event) {
   event.preventDefault();
+  // debugger;
   if (($(this).text() === 'X') || ($(this).text() === 'O') ||
-       gameOver === 'true' || typeof store.game === 'undefined' ||
-       store.user === null) {
+       gameOver === 'true' || !store.game || !store.user) {
     return;
   }
 
@@ -119,9 +119,10 @@ const onClickBox = function (event) {
 
 const onCreateGame = function (event) {
   onResetGame();
-  $('.game_stats').hide();
+  // $('.game-stats').text('');
+  $('.game-stats').hide();
   event.preventDefault();
-  if (typeof store.user === 'undefined' || store.user === null) {
+  if (!store.user || !store.user) {
     return;
   }
 
@@ -133,7 +134,7 @@ const onCreateGame = function (event) {
 
 const onShowGames = function (event) {
   event.preventDefault();
-  if (typeof store.user === 'undefined' || store.user === null) {
+  if (!store.user || !store.user) {
     return;
   }
 
