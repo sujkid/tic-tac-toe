@@ -18,6 +18,7 @@ const signInSuccess = data => {
 const signOutSuccess = (/*data*/) => {
   store.user = null;
   store.game = null;
+
   // console.log(data);
   $('#change-pw').hide();
   $('#sign-out').hide();

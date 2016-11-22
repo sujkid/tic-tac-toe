@@ -3,6 +3,7 @@
 
 An SPA for the Tic Tac Toe game built in Javascript.
 My first game project with General Aasembly Boston's WDI.
+<a href='https://sujkid.github.io/tic-tac-toe/'>Tic Tac Toe</a>
 
 ## Technologies used
 
@@ -13,6 +14,16 @@ My first game project with General Aasembly Boston's WDI.
 - Bootstrap
 - Git/Github
 - Webpack
+
+## Planning and development
+
+
+
+## Unsolved problems
+
+It's not mobile yet.
+I would like to display total games won, lost and the draw games for each user.
+I would like for two users to play the across the internet.
 
 ## User Stories
 

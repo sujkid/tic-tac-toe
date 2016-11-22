@@ -38,7 +38,6 @@ const onResetGame = function () {
 
 const onClickBox = function (event) {
   event.preventDefault();
-  // debugger;
   if (($(this).text() === 'X') || ($(this).text() === 'O') ||
        gameOver === 'true' || !store.game || !store.user) {
     return;
@@ -119,6 +118,7 @@ const onClickBox = function (event) {
 
 const onCreateGame = function (event) {
   onResetGame();
+
   // $('.game-stats').text('');
   $('.game-stats').hide();
   event.preventDefault();
