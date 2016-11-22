@@ -14,13 +14,13 @@ $margin-top-display: 40px;
 $border-radius-box: 25px;
 $header-color: #fff;
 $font-size: 30px;
+$game-stats-height: 40px;
 
 h3 {
   color: $header-color;
 }
 
 body {
-  // background: url("https://static.pexels.com/photos/57858/pexels-photo-57858.jpeg");
   background-color: $background-color-body;
   font-family: 'Shadows Into Light', cursive;
   font-size: $font-size;
@@ -49,8 +49,11 @@ body {
 }
 
 .display {
-  margin-top: $margin-top-display;
+  // border: 1px solid $black;
+  // height: $game-stats-height;
+  // margin-top: $margin-top-display;
   text-align: center;
+  // width: ($height * 3) + 3;
 }
 
 .navbar-brand {
@@ -65,3 +68,8 @@ body {
 .games {
   display: inline-block;
 }
+
+// .game-stats {
+//   border: 1px solid $black;
+//   height: $game-stats-height;
+// }

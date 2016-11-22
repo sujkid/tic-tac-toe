@@ -19,8 +19,8 @@ const successCreateGame = data => {
 };
 
 const successShowGame = (data) => {
-  $('.game_stats').show();
-  $('.game_stats').text('You have played ' + data.games.length + ' games');
+  $('.game-stats').show();
+  $('.game-stats').text('You have played ' + data.games.length + ' games');
 
   // console.log(data);
 };
