@@ -260,6 +260,7 @@ webpackJsonp([0],[
 	var signOutSuccess = function signOutSuccess() /*data*/{
 	  store.user = null;
 	  store.game = null;
+
 	  // console.log(data);
 	  $('#change-pw').hide();
 	  $('#sign-out').hide();
@@ -323,7 +324,6 @@ webpackJsonp([0],[
 
 	var onClickBox = function onClickBox(event) {
 	  event.preventDefault();
-	  // debugger;
 	  if ($(this).text() === 'X' || $(this).text() === 'O' || gameOver === 'true' || !store.game || !store.user) {
 	    return;
 	  }
@@ -369,6 +369,7 @@ webpackJsonp([0],[
 
 	var onCreateGame = function onCreateGame(event) {
 	  onResetGame();
+
 	  // $('.game-stats').text('');
 	  $('.game-stats').hide();
 	  event.preventDefault();
