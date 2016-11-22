@@ -17,7 +17,12 @@ My first game project with General Aasembly Boston's WDI.
 
 ## Planning and development
 
-
+- Collecting facts by reading and analysing the requirement documents.
+- Designing the features by writing user stories and making frames.
+- Developing the game by using the analysis and degign as input to write the
+  code.
+- Testing at various levels of development, and after.
+- Bug fixing.
 
 ## Unsolved problems
 
